@@ -30,25 +30,28 @@ const ExpenseForm = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className='new-expense__controls'>
-        <div className='new-expense__control'>
-          <label>내용</label>
-          <input type='text' value={title} onChange={titleChangeHandler}/>
+    <>
+      <form onSubmit={submitHandler}>
+        <div className='new-expense__controls'>
+          <div className='new-expense__control'>
+            <label>내용</label>
+            <input type='text' value={title} onChange={titleChangeHandler} required/>
+          </div>
+          <div className='new-expense__control'>
+            <label>가격</label>
+            <input type='number' value={amount} min='0' step='1' onChange={amountChangeHandler} required/>
+          </div>
+          <div className='new-expense__control'>
+            <label>날짜</label>
+            <input type='date' value={date} min='2019-01-01' max='2022-12-31' onChange={dateChangeHandler} required/>
+          </div>
         </div>
-        <div className='new-expense__control'>
-          <label>가격</label>
-          <input type='number' value={amount} min='0' step='1' onChange={amountChangeHandler}/>
+        <div className='new-expense__actions'>
+          <button type='button' onClick={props.onClose}>취소</button>
+          <button type='submit'>추가</button>
         </div>
-        <div className='new-expense__control'>
-          <label>날짜</label>
-          <input type='date' value={date} min='2020-01-01' max='2022-12-31' onChange={dateChangeHandler}/>
-        </div>
-      </div>
-      <div className='new-expense__actions'>
-        <button type='submit'>추가</button>
-      </div>
-    </form>
+      </form>
+    </>
   )
 };
 

@@ -2,8 +2,33 @@ import React, {useState} from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 
+const DUMMY_DATA = [
+  {
+    id: 'e0',
+    title: '쇼핑',
+    amount: '90000',
+    date: new Date(2022, 4, 9),
+  },
+  {
+    id: 'e1',
+    title: '장보기',
+    amount: '30000',
+    date: new Date(2022, 1, 10),
+  }, {
+    id: 'e2',
+    title: '쇼핑',
+    amount: '20000',
+    date: new Date(2021, 5, 21),
+  }, {
+    id: 'e3',
+    title: '외식',
+    amount: '50000',
+    date: new Date(2019, 6, 1),
+  },
+]
+
 const App = () => {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState(DUMMY_DATA);
   // const expenses = [
   //   {id: 'e1', title: '헬스장', amount: 20000, date: new Date(2022, 4, 3)},
   //   {id: 'e2', title: '쇼핑', amount: 100000, date: new Date(2022, 4, 7)},
@@ -12,7 +37,7 @@ const App = () => {
   // ];
 
   const addExpenseHandler = (expense) => {
-    setExpenses((prevState => [...prevState, expense]));
+    setExpenses((prevState => [expense, ...prevState ]));
   }
 
   // #1과 #2의 코드는 동일하게 동작된다!
