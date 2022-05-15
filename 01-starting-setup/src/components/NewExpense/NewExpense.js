@@ -4,6 +4,7 @@ import './NewExpense.css';
 
 
 const NewExpense = (props) => {
+  const [animation, setAnimation] = useState('');
   const [isOpened, setIsOpened] = useState(false);
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
@@ -16,15 +17,19 @@ const NewExpense = (props) => {
   }
   const openExpenseFormHandler = () => {
     setIsOpened(true);
+    setAnimation('openSlide')
   }
 
   const closeExpenseFormHandler = () => {
     setIsOpened(false);
+    setAnimation('closeSlide');
   }
+
+
 
   return (
     <>
-      <div className="new-expense">
+      <div className={`new-expense ${animation}`}>
         {!isOpened && <button type='button' onClick={openExpenseFormHandler}>+</button> }
         {
           isOpened && <ExpenseForm onClose={closeExpenseFormHandler} onSaveExpenseData={saveExpenseDataHandler}/>

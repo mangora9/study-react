@@ -9,6 +9,14 @@
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
 }
 
+.openSlide {
+    animation: openSlide 1s;
+}
+
+.closeSlide {
+    animation: closeSlide 1s;
+}
+
 .new-expense button {
     font: inherit;
     cursor: pointer;
@@ -35,4 +43,26 @@
 .new-expense button.alternative:hover,
 .new-expense button.alternative:active {
     background-color: #ddb3f8;
+}
+
+@keyframes openSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-5%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes closeSlide {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-5%);
+    }
 }
