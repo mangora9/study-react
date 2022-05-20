@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, userRef } from 'react';
 import Card from "../UI/Card";
 import classes from './AddUser.module.css';
 import Button from "../UI/Button";
@@ -6,6 +6,9 @@ import ErrorModal from "../UI/ErrorModal";
 import Wrapper from "../Helper/Wrapper";
 
 const AddUser = (props) => {
+  const nameInputRef = useRef();
+  const ageInputRef = userRef();
+
   const [error, setError] = useState();
   const [userName, setUserName] = useState('');
   const changeUserNameHandler = (e) => {
@@ -54,9 +57,15 @@ const AddUser = (props) => {
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor='userName'>이름</label>
-          <input type='text' id='userName' value={userName} onChange={changeUserNameHandler}/>
+          <input
+            type='text'
+            id='userName'
+            value={userName}
+            onChange={changeUserNameHandler}
+            ref={nameInputRef}
+          />
           <label htmlFor='userAge'>나이</label>
-          <input type='number' id='userAge' value={userAge} onChange={changeUserAgeHandler}/>
+          <input type='number' id='userAge' value={userAge} onChange={changeUserAgeHandler} ref={ageInputRef}/>
           <Button type='submit'>추가</Button>
         </form>
       </Card>
