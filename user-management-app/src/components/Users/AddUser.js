@@ -10,18 +10,12 @@ const AddUser = (props) => {
   const ageInputRef = useRef();
 
   const [error, setError] = useState();
-  const [userName, setUserName] = useState('');
-  const changeUserNameHandler = (e) => {
-    setUserName(e.target.value);
-  }
-
-  const [userAge, setUserAge] = useState('');
-  const changeUserAgeHandler = (e) => {
-    setUserAge(e.target.value);
-  }
 
   const addUserHandler = (e) => {
     e.preventDefault();
+    console.log(nameInputRef.current);
+    const userName = nameInputRef.current.value;
+    const userAge = ageInputRef.current.value;
 
     // 유효성 검사
     // 빈 값 검사
@@ -44,9 +38,8 @@ const AddUser = (props) => {
 
     const user = {userName, userAge}
     props.onAddUserInfo(user);
-
-    setUserName('');
-    setUserAge('');
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   }
 
   const modalCloseHandler = () => {
@@ -60,12 +53,14 @@ const AddUser = (props) => {
           <input
             type='text'
             id='userName'
-            value={userName}
-            onChange={changeUserNameHandler}
             ref={nameInputRef}
           />
           <label htmlFor='userAge'>나이</label>
-          <input type='number' id='userAge' value={userAge} onChange={changeUserAgeHandler} ref={ageInputRef}/>
+          <input
+            type='number'
+            id='userAge'
+            ref={ageInputRef}
+          />
           <Button type='submit'>추가</Button>
         </form>
       </Card>
